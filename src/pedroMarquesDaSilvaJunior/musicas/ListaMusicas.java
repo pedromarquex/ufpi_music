@@ -7,7 +7,7 @@ public class ListaMusicas {
 
 	public void adiciona(Musica musica) throws MusicaJaCadastrada {
 		try {
-			this.procura(musica.getNome(), musica.getArtista().getNome());
+			this.procura(musica.getNome(), musica.getArtista().getIdUsuario());
 			throw new MusicaJaCadastrada();
 		} catch (MusicaNaoCadastrada e) {
 			musicas.add(musica);

@@ -3,7 +3,7 @@ package pedroMarquesDaSilvaJunior.usuarios;
 import java.util.ArrayList;
 
 public class Banda extends Usuario {
-	ArrayList<Artista> componentes;
+	private ArrayList<Artista> componentes;
 	
 	public Banda(String idUsuario, String nome, String email, String senha, ArrayList<Artista> artistas) {
 		super(idUsuario, nome, email, senha);

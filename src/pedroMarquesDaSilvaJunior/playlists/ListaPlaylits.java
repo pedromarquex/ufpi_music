@@ -11,6 +11,9 @@ public class ListaPlaylits {
 	private ArrayList<Playlist> lists = new ArrayList<Playlist>();
 
 	public void adiciona(String idUsu, String nome) throws PlaylistExistente, ValorInvalido {
+		if(nome == null || nome.equals("")) {
+			throw new ValorInvalido();
+		}
 		try {
 			procura(idUsu, nome);
 			throw new PlaylistExistente();

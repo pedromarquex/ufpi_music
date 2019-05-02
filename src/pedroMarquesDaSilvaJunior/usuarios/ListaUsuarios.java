@@ -14,6 +14,13 @@ public class ListaUsuarios {
 			throw new ValorInvalido();
 		} else if (usuario.getSenha() == null || usuario.getSenha().equals("")) {
 			throw new ValorInvalido();
+		} else if (usuario.getEmail() == null || usuario.getEmail().equals("")) {
+			throw new ValorInvalido();
+		}
+		if (usuario instanceof Banda) {
+			if (((Banda)usuario).getComponentes() == null || ((Banda)usuario).getComponentes().size() == 0) {
+				throw new ValorInvalido();
+			}
 		}
 		try {
 			this.procura(usuario.getIdUsuario());

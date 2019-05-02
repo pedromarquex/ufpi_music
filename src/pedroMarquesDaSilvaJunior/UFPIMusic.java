@@ -28,6 +28,9 @@ public class UFPIMusic implements InterfaceStreaming {
 
 	@Override
 	public void cadastrarEstilo(String nome) throws ValorInvalido, EstiloJaCadastrado {
+		if (nome == null || nome.equals("")) {
+			throw new ValorInvalido();
+		}
 		try {
 			estilos.adiciona(nome.toLowerCase());
 		} catch (ValorInvalido | EstiloJaCadastrado e) {
@@ -96,6 +99,19 @@ public class UFPIMusic implements InterfaceStreaming {
 	@Override
 	public void adicionarMusica(String idUsu, String nomeMusica, String estilo, String link, int duracao,
 			Date lancamento) throws ValorInvalido, UsuarioNaoCadastrado, MusicaJaCadastrada, EstiloNaoCadastrado {
+		if (idUsu == null || idUsu.equals("")) {
+			throw new ValorInvalido();
+		} else if (nomeMusica == null || nomeMusica.equals("")) {
+			throw new ValorInvalido();
+		} else if (estilo == null || estilo.equals("")) {
+			throw new ValorInvalido();
+		} else if (link == null || link.equals("")) {
+			throw new ValorInvalido();
+		} else if (duracao < 1) {
+			throw new ValorInvalido();
+		} else if (lancamento.equals(new Date(0)) || lancamento.after(new Date())) {
+			throw new ValorInvalido();
+		}
 		try {
 			Artista artista = usuarios.getArtista(idUsu);
 			Musica mus = new Musica(artista, nomeMusica, estilo.toLowerCase(), link, duracao, lancamento);
@@ -153,7 +169,7 @@ public class UFPIMusic implements InterfaceStreaming {
 			try {
 				usuarios.procura(idUsu);
 				for(Playlist playlist: todas) {
-					if (playlist.getEstilos().getEstilos().contains(estilo)) {
+					if (playlist.getEstilos().getEstilos().contains(estilo.toLowerCase())) {
 						retorno.add(playlist);
 					}
 				}
